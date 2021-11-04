@@ -1,4 +1,4 @@
-# DApper
+# DApper (spider messenger)
 Dectentralized messenger / Comp Security Final project 
 
 ### Block chain piggy back 
