@@ -17,4 +17,5 @@ Dectentralized messenger / Comp Security Final project
 
 - we have decided to go this route and will be using sveltekit with gunDB.
 - here is a representation of our basic idea wherein each phone/ user is a node in the graph.
-- ![diagram](./DApperPlan.pdf)
+
+![diagram](./DApperPlan.pdf)
