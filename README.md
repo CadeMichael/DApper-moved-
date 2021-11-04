@@ -1,6 +1,8 @@
 # DApper (spider messenger)
 Dectentralized messenger / Comp Security Final project 
 
+## possible mechanisms 
+
 ### Block chain piggy back 
 
 - [dart](https://ethereum.org/en/developers/docs/programming-languages/dart/)
@@ -10,3 +12,9 @@ Dectentralized messenger / Comp Security Final project
 - https://ipdb.io/resources/
 - https://github.com/bigchaindb
 - https://dev.to/gcrsaldanha/persist-data-to-the-ethereum-blockchain-using-python-truffle-and-ganache-47lb
+
+### using a decentralized graph data base (gunDB)
+
+- we have decided to go this route and will be using sveltekit with gunDB.
+- here is a representation of our basic idea wherein each phone/ user is a node in the graph.
+- ![diagram](./DApperPlan.pdf)
