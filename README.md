@@ -1,4 +1,5 @@
 # DApper (spider messenger)
+
 Dectentralized messenger / Comp Security Final project 
 
 ## possible mechanisms 
