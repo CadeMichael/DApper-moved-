@@ -1,30 +1,58 @@
 <script>
-	export let name;
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+<main> 
+
+  <dev class = "content"> 
+    <h1>Spider Messenger</h1>
+    <h2>Spin your own web</h2>
+
+    <hr>
+
+    <form>
+      <table>
+        <tr>
+          <td> <b>Name:</b> </td>
+          <td> <input> </td>
+        </tr>
+        <tr>
+          <td> <b>Password:</b> </td>
+          <td> <input> </td>
+        </tr>
+      </table>
+    </form>
+  </dev>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  main {
+    background: darkblue;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .content {
+    margin-top: 125px;
+    background: #b9b9b9;
+    padding: 25px;
+    box-shadow: 10px 10px black;
+  }
+  form {
+    margin: 50px; 
+    justify-content: center; 
+  }
+  tr { 
+    background-color: darkgrey;
+  }
+  td {
+    padding: 10px
+  }
+  table {
+    box-shadow: 5px 5px #565656;
+  }
+  input {
+    background-color: lightgray;
+  }
 </style>
