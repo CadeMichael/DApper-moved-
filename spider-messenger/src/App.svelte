@@ -37,7 +37,7 @@
     margin-top: 125px;
     background: #b9b9b9;
     padding: 25px;
-    box-shadow: 10px 10px black;
+    box-shadow: 15px 20px black;
   }
   form {
     margin: 50px; 
