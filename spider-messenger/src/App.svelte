@@ -24,7 +24,7 @@
       </table>
       <table class="loginPage">
         <tr> 
-          <th><button on:click><b>Login</b></button></th>
+          <th><button on:click><b>Login</b></button></th> 
           <th><button on:click><b>Register</b></button></th>
         </tr>
       </table>
