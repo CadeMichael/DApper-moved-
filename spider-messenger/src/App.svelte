@@ -1,4 +1,6 @@
 <script>
+  let username = 'UserName';
+  let password = 'PassWord';
 </script>
 
 <main> 
@@ -13,11 +15,17 @@
       <table>
         <tr>
           <td> <b>Name:</b> </td>
-          <td> <input> </td>
+          <td> <input placeholder = {username}> </td>
         </tr>
         <tr>
           <td> <b>Password:</b> </td>
-          <td> <input> </td>
+          <td> <input type = "password" placeholder = {password}> </td> 
+        </tr>
+      </table>
+      <table class="loginPage">
+        <tr> 
+          <th><button on:click><b>Login</b></button></th>
+          <th><button on:click><b>Register</b></button></th>
         </tr>
       </table>
     </form>
@@ -25,6 +33,11 @@
 </main>
 
 <style>
+  .loginPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   main {
     background: darkblue;
     height: 100%;

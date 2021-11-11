@@ -45,6 +45,10 @@ var app = (function () {
     function space() {
         return text(' ');
     }
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
+    }
     function attr(node, attribute, value) {
         if (value == null)
             node.removeAttribute(attribute);
@@ -63,6 +67,16 @@ var app = (function () {
     let current_component;
     function set_current_component(component) {
         current_component = component;
+    }
+    // TODO figure out if we still want to support
+    // shorthand events, or if we want to implement
+    // a real bubbling mechanism
+    function bubble(component, event) {
+        const callbacks = component.$$.callbacks[event.type];
+        if (callbacks) {
+            // @ts-ignore
+            callbacks.slice().forEach(fn => fn.call(this, event));
+        }
     }
 
     const dirty_components = [];
@@ -276,6 +290,19 @@ var app = (function () {
         dispatch_dev('SvelteDOMRemove', { node });
         detach(node);
     }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ['capture'] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev('SvelteDOMAddEventListener', { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev('SvelteDOMRemoveEventListener', { node, event, handler, modifiers });
+            dispose();
+        };
+    }
     function attr_dev(node, attribute, value) {
         attr(node, attribute, value);
         if (value == null)
@@ -324,7 +351,7 @@ var app = (function () {
     	let hr;
     	let t4;
     	let form;
-    	let table;
+    	let table0;
     	let tr0;
     	let td0;
     	let b0;
@@ -338,6 +365,18 @@ var app = (function () {
     	let t9;
     	let td3;
     	let input1;
+    	let t10;
+    	let table1;
+    	let tr2;
+    	let th0;
+    	let button0;
+    	let b2;
+    	let t12;
+    	let th1;
+    	let button1;
+    	let b3;
+    	let mounted;
+    	let dispose;
 
     	const block = {
     		c: function create() {
@@ -352,7 +391,7 @@ var app = (function () {
     			hr = element("hr");
     			t4 = space();
     			form = element("form");
-    			table = element("table");
+    			table0 = element("table");
     			tr0 = element("tr");
     			td0 = element("td");
     			b0 = element("b");
@@ -368,35 +407,60 @@ var app = (function () {
     			t9 = space();
     			td3 = element("td");
     			input1 = element("input");
-    			add_location(h1, file, 6, 4, 60);
-    			add_location(h2, file, 7, 4, 90);
-    			add_location(hr, file, 9, 4, 122);
-    			add_location(b0, file, 14, 15, 181);
-    			attr_dev(td0, "class", "svelte-c8qm59");
-    			add_location(td0, file, 14, 10, 176);
-    			attr_dev(input0, "class", "svelte-c8qm59");
-    			add_location(input0, file, 15, 15, 215);
-    			attr_dev(td1, "class", "svelte-c8qm59");
-    			add_location(td1, file, 15, 10, 210);
-    			attr_dev(tr0, "class", "svelte-c8qm59");
-    			add_location(tr0, file, 13, 8, 161);
-    			add_location(b1, file, 18, 15, 271);
-    			attr_dev(td2, "class", "svelte-c8qm59");
-    			add_location(td2, file, 18, 10, 266);
-    			attr_dev(input1, "class", "svelte-c8qm59");
-    			add_location(input1, file, 19, 15, 309);
-    			attr_dev(td3, "class", "svelte-c8qm59");
-    			add_location(td3, file, 19, 10, 304);
-    			attr_dev(tr1, "class", "svelte-c8qm59");
-    			add_location(tr1, file, 17, 8, 251);
-    			attr_dev(table, "class", "svelte-c8qm59");
-    			add_location(table, file, 12, 6, 145);
-    			attr_dev(form, "class", "svelte-c8qm59");
-    			add_location(form, file, 11, 4, 132);
-    			attr_dev(dev, "class", "content svelte-c8qm59");
-    			add_location(dev, file, 5, 2, 31);
-    			attr_dev(main, "class", "svelte-c8qm59");
-    			add_location(main, file, 3, 0, 20);
+    			t10 = space();
+    			table1 = element("table");
+    			tr2 = element("tr");
+    			th0 = element("th");
+    			button0 = element("button");
+    			b2 = element("b");
+    			b2.textContent = "Login";
+    			t12 = space();
+    			th1 = element("th");
+    			button1 = element("button");
+    			b3 = element("b");
+    			b3.textContent = "Register";
+    			add_location(h1, file, 8, 4, 118);
+    			add_location(h2, file, 9, 4, 148);
+    			add_location(hr, file, 11, 4, 180);
+    			add_location(b0, file, 16, 15, 239);
+    			attr_dev(td0, "class", "svelte-1fgj0yf");
+    			add_location(td0, file, 16, 10, 234);
+    			attr_dev(input0, "placeholder", /*username*/ ctx[0]);
+    			attr_dev(input0, "class", "svelte-1fgj0yf");
+    			add_location(input0, file, 17, 15, 273);
+    			attr_dev(td1, "class", "svelte-1fgj0yf");
+    			add_location(td1, file, 17, 10, 268);
+    			attr_dev(tr0, "class", "svelte-1fgj0yf");
+    			add_location(tr0, file, 15, 8, 219);
+    			add_location(b1, file, 20, 15, 354);
+    			attr_dev(td2, "class", "svelte-1fgj0yf");
+    			add_location(td2, file, 20, 10, 349);
+    			attr_dev(input1, "type", "password");
+    			attr_dev(input1, "placeholder", /*password*/ ctx[1]);
+    			attr_dev(input1, "class", "svelte-1fgj0yf");
+    			add_location(input1, file, 21, 15, 392);
+    			attr_dev(td3, "class", "svelte-1fgj0yf");
+    			add_location(td3, file, 21, 10, 387);
+    			attr_dev(tr1, "class", "svelte-1fgj0yf");
+    			add_location(tr1, file, 19, 8, 334);
+    			attr_dev(table0, "class", "svelte-1fgj0yf");
+    			add_location(table0, file, 14, 6, 203);
+    			add_location(b2, file, 26, 31, 556);
+    			add_location(button0, file, 26, 14, 539);
+    			add_location(th0, file, 26, 10, 535);
+    			add_location(b3, file, 27, 31, 614);
+    			add_location(button1, file, 27, 14, 597);
+    			add_location(th1, file, 27, 10, 593);
+    			attr_dev(tr2, "class", "svelte-1fgj0yf");
+    			add_location(tr2, file, 25, 8, 519);
+    			attr_dev(table1, "class", "loginPage svelte-1fgj0yf");
+    			add_location(table1, file, 24, 6, 485);
+    			attr_dev(form, "class", "svelte-1fgj0yf");
+    			add_location(form, file, 13, 4, 190);
+    			attr_dev(dev, "class", "content svelte-1fgj0yf");
+    			add_location(dev, file, 7, 2, 89);
+    			attr_dev(main, "class", "svelte-1fgj0yf");
+    			add_location(main, file, 5, 0, 78);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -411,26 +475,47 @@ var app = (function () {
     			append_dev(dev, hr);
     			append_dev(dev, t4);
     			append_dev(dev, form);
-    			append_dev(form, table);
-    			append_dev(table, tr0);
+    			append_dev(form, table0);
+    			append_dev(table0, tr0);
     			append_dev(tr0, td0);
     			append_dev(td0, b0);
     			append_dev(tr0, t6);
     			append_dev(tr0, td1);
     			append_dev(td1, input0);
-    			append_dev(table, t7);
-    			append_dev(table, tr1);
+    			append_dev(table0, t7);
+    			append_dev(table0, tr1);
     			append_dev(tr1, td2);
     			append_dev(td2, b1);
     			append_dev(tr1, t9);
     			append_dev(tr1, td3);
     			append_dev(td3, input1);
+    			append_dev(form, t10);
+    			append_dev(form, table1);
+    			append_dev(table1, tr2);
+    			append_dev(tr2, th0);
+    			append_dev(th0, button0);
+    			append_dev(button0, b2);
+    			append_dev(tr2, t12);
+    			append_dev(tr2, th1);
+    			append_dev(th1, button1);
+    			append_dev(button1, b3);
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(button0, "click", /*click_handler*/ ctx[3], false, false, false),
+    					listen_dev(button1, "click", /*click_handler_1*/ ctx[2], false, false, false)
+    				];
+
+    				mounted = true;
+    			}
     		},
     		p: noop,
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
+    			mounted = false;
+    			run_all(dispose);
     		}
     	};
 
@@ -445,16 +530,37 @@ var app = (function () {
     	return block;
     }
 
-    function instance($$self, $$props) {
+    function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
+    	let username = 'UserName';
+    	let password = 'PassWord';
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	return [];
+    	function click_handler_1(event) {
+    		bubble.call(this, $$self, event);
+    	}
+
+    	function click_handler(event) {
+    		bubble.call(this, $$self, event);
+    	}
+
+    	$$self.$capture_state = () => ({ username, password });
+
+    	$$self.$inject_state = $$props => {
+    		if ('username' in $$props) $$invalidate(0, username = $$props.username);
+    		if ('password' in $$props) $$invalidate(1, password = $$props.password);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [username, password, click_handler_1, click_handler];
     }
 
     class App extends SvelteComponentDev {
