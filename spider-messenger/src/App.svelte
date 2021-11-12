@@ -12,20 +12,19 @@
     <hr>
 
     <form>
-      <table>
+      <table class = "inputLogin">
         <tr>
           <td> <b>Name:</b> </td>
-          <td> <input placeholder = {username}> </td>
+          <td colspan="2"> <input placeholder = {username}> </td>
         </tr>
         <tr>
           <td> <b>Password:</b> </td>
-          <td> <input type = "password" placeholder = {password}> </td> 
+          <td colspan="2"> <input type = "password" placeholder = {password}> </td> 
         </tr>
-      </table>
-      <table class="loginPage">
         <tr> 
-          <th><button on:click><b>Login</b></button></th> 
-          <th><button on:click><b>Register</b></button></th>
+          <td> <b>Ready...</b> </td>
+          <td> <button on:click><b>Login</b></button> </td>
+          <td> <button on:click><b>Register</b></button> </td>
         </tr>
       </table>
     </form>
@@ -33,10 +32,10 @@
 </main>
 
 <style>
-  .loginPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  button {
+    color: lightgray;
+    background-color: darkblue;
+    box-shadow: 2px 2px black;
   }
   main {
     background: darkblue;
@@ -62,7 +61,7 @@
   td {
     padding: 10px
   }
-  table {
+  .inputLogin {
     box-shadow: 5px 5px #565656;
   }
   input {
