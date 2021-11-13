@@ -15,6 +15,7 @@ export const username = writable('');
 user.get('alias').on(v => username.set(v));
 
 db.on('auth', async(event) => {
+    console.log(`in db.on auth`);
     const alias = await user.get('alias'); // username string
     username.set(alias);
 

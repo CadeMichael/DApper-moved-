@@ -25,7 +25,6 @@
 
 <hr>
 
-<form>
     <table class = "inputLogin">
     <tr>
 	<td><label for="username">Username</label></td>
@@ -41,13 +40,17 @@
 	<td> <button on:click={register}><b>Register</b></button> </td>
     </tr>
     </table>
-</form>
+
+<!-- <label for="username">Username</label>
+<input name="username" bind:value={username} minlength="3" maxlength="16" />
+
+<label for="password">Password</label>
+<input name="password" bind:value={password} type="password" />
+
+<button on:click={login}><b>Login</b></button> 
+<button on:click={register}><b>Register</b></button> -->
+
 </dev> 
-
-
-
-
-
 
 <style>
   button {

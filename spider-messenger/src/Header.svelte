@@ -9,7 +9,6 @@
 </script>
 
 <main>
-    <h1>Header</h1>
     {#if $username}
         <div class='user-info'>
             <span>Hello {$username}!</span>
