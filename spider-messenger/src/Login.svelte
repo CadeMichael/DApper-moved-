@@ -1,9 +1,25 @@
 <script>
-  let username = 'UserName';
-  let password = 'PassWord';
+  import { user } from './user';
+
+  let username;
+  let password;
+
+  function login(){
+    user.auth(username, password, ({ err }) => err && alert(err));
+  }
+
+  function register(){
+    user.create(username, password, ({ err }) => {
+      if (err) {
+        alert(err);
+      } else {
+        login();
+      }
+    });
+  }
 </script>
 
-<dev class = "content"> 
+<!-- <dev class = "content"> 
 <h1>Spider Messenger</h1>
 <h2>Spin your own web</h2>
 
@@ -13,20 +29,31 @@
     <table class = "inputLogin">
     <tr>
 	<td> <b>Name:</b> </td>
-	<td colspan="2"> <input placeholder = {username}> </td>
+	<td colspan="2"> <input placeholder = "Unique ID"> </td>
     </tr>
     <tr>
 	<td> <b>Password:</b> </td>
-	<td colspan="2"> <input type = "password" placeholder = {password}> </td> 
+	<td colspan="2"> <input type = "password" placeholder = "Password"> </td> 
     </tr>
     <tr> 
 	<td> <b>Ready...</b> </td>
-	<td> <button on:click><b>Login</b></button> </td>
-	<td> <button on:click><b>Register</b></button> </td>
+	<td> <button on:click={login}><b>Login</b></button> </td>
+	<td> <button on:click={register}><b>Register</b></button> </td>
     </tr>
     </table>
 </form>
-</dev>
+</dev> -->
+
+<label for="username">Username</label>
+<input name="username" bind:value={username} minlength="3" maxlength="16" />
+
+<label for="password">Password</label>
+<input name="password" bind:value={password} type="password" />
+
+<td> <button on:click={login}><b>Login</b></button> </td>
+<td> <button on:click={register}><b>Register</b></button> </td>
+
+
 
 <style>
   button {

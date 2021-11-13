@@ -1,9 +1,11 @@
 <script>
   import Login from './Login.svelte';
+  import Header from './Header.svelte';
   let logged = false;
 </script>
 
 <main> 
+  <Header />
   {#if !logged}
     <Login/>
   {/if}
