@@ -19,7 +19,7 @@
   }
 </script>
 
-<!-- <dev class = "content"> 
+<dev class = "content"> 
 <h1>Spider Messenger</h1>
 <h2>Spin your own web</h2>
 
@@ -28,12 +28,12 @@
 <form>
     <table class = "inputLogin">
     <tr>
-	<td> <b>Name:</b> </td>
-	<td colspan="2"> <input placeholder = "Unique ID"> </td>
+	<td><label for="username">Username</label></td>
+	<td colspan="2"><input name="username" bind:value={username} minlength="3" maxlength="16" /> </td>
     </tr>
     <tr>
-	<td> <b>Password:</b> </td>
-	<td colspan="2"> <input type = "password" placeholder = "Password"> </td> 
+	<td><label for="password">Password</label></td>
+	<td colspan="2"><input name="password" bind:value={password} type="password" /></td>
     </tr>
     <tr> 
 	<td> <b>Ready...</b> </td>
@@ -42,16 +42,10 @@
     </tr>
     </table>
 </form>
-</dev> -->
+</dev> 
 
-<label for="username">Username</label>
-<input name="username" bind:value={username} minlength="3" maxlength="16" />
 
-<label for="password">Password</label>
-<input name="password" bind:value={password} type="password" />
 
-<td> <button on:click={login}><b>Login</b></button> </td>
-<td> <button on:click={register}><b>Register</b></button> </td>
 
 
 
