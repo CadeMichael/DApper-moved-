@@ -1,4 +1,4 @@
 # gitignore file
 
-spider-messenger/node_modules
-spider-messenger/public
+spider/package*
+spider/node_modules/
