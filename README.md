@@ -40,6 +40,15 @@ Dectentralized messenger / Comp Security Final project
 - from here on focus on getting messaging to work, ie figuring out how to exchange public keys is extra, eventually will impliment but for due date
 just need to show messages are encrypted and user info is hashed, and both are stored in gunDB. 
 
+## Change in planning
+
+- don't do hashing on the frontend, we need to do it server side 
+- **options**
+  - sveltekit -> gives you a backend, *build using node-adapter* 
+  - [sveltekit endpoints](https://kit.svelte.dev/docs#routing-endpoints)
+- suggested to hash on both ends 
+  - hash on both ends with [argon2](https://www.npmjs.com/package/argon2)
+
 ### Block chain piggy back (alternative approach)
 
 - [dart](https://ethereum.org/en/developers/docs/programming-languages/dart/)
@@ -49,5 +58,4 @@ just need to show messages are encrypted and user info is hashed, and both are s
 - https://ipdb.io/resources/
 - https://github.com/bigchaindb
 - https://dev.to/gcrsaldanha/persist-data-to-the-ethereum-blockchain-using-python-truffle-and-ganache-47lb
-
 
