@@ -1,20 +1,30 @@
 <script>
   import { user } from './user';
-
+  const bcrypt = require('bcrypt');
   let username;
   let password;
 
   function login(){
-    user.auth(username, password, ({ err }) => err && alert(err));
+    bcrypt.genSalt(saltRounds, function(err, salt) {  
+      bcrypt.hash(password, salt, function(err, hash) {
+        // Store hash in database here
+        user.auth(username, hash, ({ err }) => err && alert(err));
+      });
+    });
   }
 
   function register(){
-    user.create(username, password, ({ err }) => {
-      if (err) {
-        alert(err);
-      } else {
-        login();
-      }
+    bcrypt.genSalt(saltRounds, function(err, salt) {  
+      bcrypt.hash(password, salt, function(err, hash) {
+        // Store hash in database here
+        user.create(username, hash, ({ err }) => {
+          if (err) {
+            alert(err);
+          } else {
+            login();
+          }
+        });
+      });
     });
   }
 </script>

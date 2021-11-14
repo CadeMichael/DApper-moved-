@@ -4145,6 +4145,15 @@ var app = (function () {
         return { set, update, subscribe };
     }
 
+    require('bcrypt');
+    //const { createHash } = require('crypto');
+
+    /**
+    export const hash = (input) => {
+        // set the alg -> git it info -> get output
+      crypo.createHash('sha256').update(input).digest('hex');
+    };
+    */
     // Instantiating Database
     const db = browser();
 
@@ -4157,6 +4166,7 @@ var app = (function () {
     user.get('alias').on(v => username.set(v));
 
     db.on('auth', async(event) => {
+        console.log(`in db.on auth`);
         const alias = await user.get('alias'); // username string
         username.set(alias);
 
@@ -4174,7 +4184,6 @@ var app = (function () {
     	let t3;
     	let hr;
     	let t4;
-    	let form;
     	let table;
     	let tr0;
     	let td0;
@@ -4215,7 +4224,6 @@ var app = (function () {
     			t3 = space();
     			hr = element("hr");
     			t4 = space();
-    			form = element("form");
     			table = element("table");
     			tr0 = element("tr");
     			td0 = element("td");
@@ -4247,57 +4255,55 @@ var app = (function () {
     			button1 = element("button");
     			b2 = element("b");
     			b2.textContent = "Register";
-    			add_location(h1, file$2, 22, 0, 367);
-    			add_location(h2, file$2, 23, 0, 393);
-    			add_location(hr, file$2, 25, 0, 421);
+    			add_location(h1, file$2, 32, 0, 762);
+    			add_location(h2, file$2, 33, 0, 788);
+    			add_location(hr, file$2, 35, 0, 816);
     			attr_dev(label0, "for", "username");
-    			add_location(label0, file$2, 30, 5, 481);
+    			add_location(label0, file$2, 39, 5, 869);
     			attr_dev(td0, "class", "svelte-z9imzp");
-    			add_location(td0, file$2, 30, 1, 477);
+    			add_location(td0, file$2, 39, 1, 865);
     			attr_dev(input0, "name", "username");
     			attr_dev(input0, "minlength", "3");
     			attr_dev(input0, "maxlength", "16");
     			attr_dev(input0, "class", "svelte-z9imzp");
-    			add_location(input0, file$2, 31, 17, 542);
+    			add_location(input0, file$2, 40, 17, 930);
     			attr_dev(td1, "colspan", "2");
     			attr_dev(td1, "class", "svelte-z9imzp");
-    			add_location(td1, file$2, 31, 1, 526);
+    			add_location(td1, file$2, 40, 1, 914);
     			attr_dev(tr0, "class", "svelte-z9imzp");
-    			add_location(tr0, file$2, 29, 4, 471);
+    			add_location(tr0, file$2, 38, 4, 859);
     			attr_dev(label1, "for", "password");
-    			add_location(label1, file$2, 34, 5, 649);
+    			add_location(label1, file$2, 43, 5, 1037);
     			attr_dev(td2, "class", "svelte-z9imzp");
-    			add_location(td2, file$2, 34, 1, 645);
+    			add_location(td2, file$2, 43, 1, 1033);
     			attr_dev(input1, "name", "password");
     			attr_dev(input1, "type", "password");
     			attr_dev(input1, "class", "svelte-z9imzp");
-    			add_location(input1, file$2, 35, 17, 710);
+    			add_location(input1, file$2, 44, 17, 1098);
     			attr_dev(td3, "colspan", "2");
     			attr_dev(td3, "class", "svelte-z9imzp");
-    			add_location(td3, file$2, 35, 1, 694);
+    			add_location(td3, file$2, 44, 1, 1082);
     			attr_dev(tr1, "class", "svelte-z9imzp");
-    			add_location(tr1, file$2, 33, 4, 639);
-    			add_location(b0, file$2, 38, 6, 805);
+    			add_location(tr1, file$2, 42, 4, 1027);
+    			add_location(b0, file$2, 47, 6, 1193);
     			attr_dev(td4, "class", "svelte-z9imzp");
-    			add_location(td4, file$2, 38, 1, 800);
-    			add_location(b1, file$2, 39, 31, 858);
+    			add_location(td4, file$2, 47, 1, 1188);
+    			add_location(b1, file$2, 48, 31, 1246);
     			attr_dev(button0, "class", "svelte-z9imzp");
-    			add_location(button0, file$2, 39, 6, 833);
+    			add_location(button0, file$2, 48, 6, 1221);
     			attr_dev(td5, "class", "svelte-z9imzp");
-    			add_location(td5, file$2, 39, 1, 828);
-    			add_location(b2, file$2, 40, 34, 920);
+    			add_location(td5, file$2, 48, 1, 1216);
+    			add_location(b2, file$2, 49, 34, 1308);
     			attr_dev(button1, "class", "svelte-z9imzp");
-    			add_location(button1, file$2, 40, 6, 892);
+    			add_location(button1, file$2, 49, 6, 1280);
     			attr_dev(td6, "class", "svelte-z9imzp");
-    			add_location(td6, file$2, 40, 1, 887);
+    			add_location(td6, file$2, 49, 1, 1275);
     			attr_dev(tr2, "class", "svelte-z9imzp");
-    			add_location(tr2, file$2, 37, 4, 793);
+    			add_location(tr2, file$2, 46, 4, 1181);
     			attr_dev(table, "class", "inputLogin svelte-z9imzp");
-    			add_location(table, file$2, 28, 4, 438);
-    			attr_dev(form, "class", "svelte-z9imzp");
-    			add_location(form, file$2, 27, 0, 427);
+    			add_location(table, file$2, 37, 4, 826);
     			attr_dev(dev, "class", "content svelte-z9imzp");
-    			add_location(dev, file$2, 21, 0, 342);
+    			add_location(dev, file$2, 31, 0, 737);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4310,8 +4316,7 @@ var app = (function () {
     			append_dev(dev, t3);
     			append_dev(dev, hr);
     			append_dev(dev, t4);
-    			append_dev(dev, form);
-    			append_dev(form, table);
+    			append_dev(dev, table);
     			append_dev(table, tr0);
     			append_dev(tr0, td0);
     			append_dev(td0, label0);
@@ -4383,20 +4388,31 @@ var app = (function () {
     function instance$2($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Login', slots, []);
+    	const bcrypt = require('bcrypt');
     	let username;
     	let password;
 
     	function login() {
-    		user.auth(username, password, ({ err }) => err && alert(err));
+    		bcrypt.genSalt(saltRounds, function (err, salt) {
+    			bcrypt.hash(password, salt, function (err, hash) {
+    				// Store hash in database here
+    				user.auth(username, hash, ({ err }) => err && alert(err));
+    			});
+    		});
     	}
 
     	function register() {
-    		user.create(username, password, ({ err }) => {
-    			if (err) {
-    				alert(err);
-    			} else {
-    				login();
-    			}
+    		bcrypt.genSalt(saltRounds, function (err, salt) {
+    			bcrypt.hash(password, salt, function (err, hash) {
+    				// Store hash in database here
+    				user.create(username, hash, ({ err }) => {
+    					if (err) {
+    						alert(err);
+    					} else {
+    						login();
+    					}
+    				});
+    			});
     		});
     	}
 
@@ -4418,6 +4434,7 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		user,
+    		bcrypt,
     		username,
     		password,
     		login,
@@ -4460,7 +4477,7 @@ var app = (function () {
     /* src/Header.svelte generated by Svelte v3.44.1 */
     const file$1 = "src/Header.svelte";
 
-    // (22:4) {:else}
+    // (21:4) {:else}
     function create_else_block(ctx) {
     	let h3;
 
@@ -4468,7 +4485,7 @@ var app = (function () {
     		c: function create() {
     			h3 = element("h3");
     			h3.textContent = "Gun Chat Default Header!";
-    			add_location(h3, file$1, 22, 8, 405);
+    			add_location(h3, file$1, 21, 8, 385);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h3, anchor);
@@ -4483,14 +4500,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(22:4) {:else}",
+    		source: "(21:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (13:4) {#if $username}
+    // (12:4) {#if $username}
     function create_if_block$1(ctx) {
     	let div;
     	let span;
@@ -4512,11 +4529,11 @@ var app = (function () {
     			t3 = space();
     			button = element("button");
     			button.textContent = "Sign Out";
-    			add_location(span, file$1, 14, 12, 236);
+    			add_location(span, file$1, 13, 12, 216);
     			attr_dev(div, "class", "user-info");
-    			add_location(div, file$1, 13, 8, 200);
+    			add_location(div, file$1, 12, 8, 180);
     			attr_dev(button, "class", "singout-button");
-    			add_location(button, file$1, 17, 8, 292);
+    			add_location(button, file$1, 16, 8, 272);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4548,7 +4565,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(13:4) {#if $username}",
+    		source: "(12:4) {#if $username}",
     		ctx
     	});
 
@@ -4557,8 +4574,6 @@ var app = (function () {
 
     function create_fragment$1(ctx) {
     	let main;
-    	let h1;
-    	let t1;
 
     	function select_block_type(ctx, dirty) {
     		if (/*$username*/ ctx[0]) return create_if_block$1;
@@ -4571,11 +4586,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			main = element("main");
-    			h1 = element("h1");
-    			h1.textContent = "Header";
-    			t1 = space();
     			if_block.c();
-    			add_location(h1, file$1, 11, 4, 156);
     			add_location(main, file$1, 10, 0, 145);
     		},
     		l: function claim(nodes) {
@@ -4583,8 +4594,6 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, h1);
-    			append_dev(main, t1);
     			if_block.m(main, null);
     		},
     		p: function update(ctx, [dirty]) {
