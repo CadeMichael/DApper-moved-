@@ -1,5 +1,7 @@
 # DApper (spider messenger)
 
+# !!! Moved over to Cam's github as a sveltekit project !!! 
+
 Dectentralized messenger / Comp Security Final project 
 
 ## possible mechanisms 
